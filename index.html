@@ -1797,13 +1797,14 @@ document.getElementById('f-fecha').value = todayStr();
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-window.db = window.supabase.createClient(
+const db = window.supabase.createClient(
   "https://kksjhjjaskxlcolopktm.supabase.co",
-  "sb_publishable__7m_kW-jaA8mB5a5NRPkKQ_1-OoIYtE"
+  "TU_KEY"
 );
 
-console.log("✅ Supabase inicializado", window.db);
+console.log("✅ Conectado a Supabase");
 </script>
 
 </body>
