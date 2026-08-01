@@ -1795,5 +1795,15 @@ renderAll();
 document.getElementById('f-fecha').value = todayStr();
 </script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabase = window.supabase.createClient(
+  "https://kksjhjjaskxlcolopktm.supabase.co",
+  "sb_publishable__7m_kW-jaA8mB5a5NRPkKQ_1-OoIYtE"
+);
+console.log("✅ Supabase inicializado", supabase);
+</script>
+
 </body>
 </html>
