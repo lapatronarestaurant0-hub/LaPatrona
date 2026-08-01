@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Patrona · Fiados y almuerzos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<style>
+:root{
+  --bg-page:#EFE6D8;
+  --paper:#FFFBF5;
+  --ink:#2B2320;
+  --berry:#8C1C5D;
+  --berry-light:#C33D8B;
+  --mostaza:#E8A33D;
+  --verde:#3F6B49;
+  --verde-bg:#E3EFE4;
+  --brick:#B23A2E;
+  --brick-bg:#FBE1DC;
+  --line:#D9C9AE;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html, body{ overflow-x:hidden; max-width:100%; }
+
+body{
+  font-family:'Work Sans',sans-serif;
+  background:var(--bg-page);
+  color:var(--ink);
+}
+
+.app{ max-width:1200px; margin:auto; padding:24px 20px 60px; width:100%; }
+
+/* ---------- MARQUEE / HEADER ---------- */
+
+.marquee{
+  background:linear-gradient(160deg,#7A1750,var(--berry) 55%,var(--berry-light));
+  border-radius:22px;
+  padding:28px 28px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+  position:relative;
+}
+
+.brand{ display:flex; align-items:center; gap:20px; }
+
+.logo-frame{
+  width:76px;
+  height:76px;
+  background:#fff;
+  border-radius:8px;
+  padding:6px;
+  transform:rotate(-4deg);
+  box-shadow:0 8px 16px rgba(0,0,0,.25);
+  position:relative;
+  flex-shrink:0;
+}
+
+.logo-frame::after{
+  content:"";
+  position:absolute;
+  top:-7px; left:50%;
+  transform:translateX(-50%);
+  width:13px; height:13px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#ff8a8a,#b91c1c);
+  box-shadow:0 2px 3px rgba(0,0,0,.4);
+}
+
+.logo-frame img{ width:100%; height:100%; object-fit:contain; border-radius:4px; }
+
+.brand-text h1{
+  font-family:'Baloo 2',sans-serif;
+  color:#fff;
+  font-size:32px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.5px;
+}
+
+.tagline-ribbon{
+  display:inline-block;
+  margin-top:10px;
+  background:var(--mostaza);
+  color:var(--ink);
+  font-family:'Space Mono',monospace;
+  font-weight:700;
+  font-size:12.5px;
+  padding:6px 16px;
+  clip-path:polygon(0 0,100% 0,95% 50%,100% 100%,0 100%,5% 50%);
+}
+
+.btn-nuevo{
+  background:#fff;
+  color:var(--berry);
+  border:none;
+  padding:14px 20px;
+  border-radius:14px;
+  font-weight:700;
+  font-family:'Work Sans',sans-serif;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+}
+
+.btn-nuevo:hover{ background:#fff0f8; }
+
+/* ---------- TICKET NAV ---------- */
+
+.ticket-rail{ display:flex; gap:6px; margin-bottom:22px; flex-wrap:wrap; }
+
+.ticket-tab{
+  position:relative;
+  border:none;
+  padding:14px 20px;
+  font-family:'Work Sans',sans-serif;
+  font-weight:700;
+  font-size:14.5px;
+  cursor:pointer;
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(circle at 0 50%, var(--bg-page) 7px, transparent 7.5px),
+    radial-gradient(circle at 100% 50%, var(--bg-page) 7px, transparent 7.5px);
+  background-repeat:no-repeat;
+  border-radius:2px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.ticket-tab.active{
+  background-color:var(--berry);
+  color:#fff;
+}
+
+.ticket-tab:focus-visible{ outline:3px solid var(--mostaza); outline-offset:2px; }
+
+/* ---------- SECTIONS ---------- */
+
+.sec{ display:none; }
+.sec.on{ display:block; }
+
+/* ---------- CHALKBOARD METRICS ---------- */
+
+.chalkboard{
+  background:linear-gradient(160deg,#24402B,#152A1A);
+  border-radius:20px;
+  padding:26px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+
+.chalkboard::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:7px 7px;
+  pointer-events:none;
+}
+
+.chalk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  position:relative;
+}
+
+.chalk-label{
+  font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+  font-size:11.5px;
+  letter-spacing:1px;
+  opacity:.75;
+}
+
+.chalk-value{
+  font-family:'Baloo 2',sans-serif;
+  font-weight:800;
+  font-size:28px;
+  margin-top:6px;
+}
+
+/* ---------- FILTER CHIPS ---------- */
+
+.chips{ display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
+
+.chip{
+  border:2px solid var(--berry);
+  background:transparent;
+  color:var(--berry);
+  padding:8px 16px;
+  border-radius:20px;
+  font-weight:700;
+  font-family:'Work Sans',sans-serif;
+  cursor:pointer;
+  font-size:13.5px;
+}
+
+.chip.active{ background:var(--berry); color:#fff; }
+
+/* ---------- SEARCH ---------- */
+
+.search-input{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:2px solid var(--line);
+  background:var(--paper);
+  margin-bottom:18px;
+  font-family:'Work Sans',sans-serif;
+  font-size:16px;
+}
+
+.search-input:focus-visible{ outline:3px solid var(--mostaza); outline-offset:1px; }
+
+/* ---------- TICKET CARD (cliente) ---------- */
+
+.ticket-card{
+  position:relative;
+  background:var(--paper);
+  border-radius:6px;
+  padding:24px 22px 22px;
+  margin-bottom:18px;
+  box-shadow:0 3px 10px rgba(43,35,32,.10);
+}
+
+.ticket-card::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:14px;
+  background-image:radial-gradient(circle at 12px 0, var(--bg-page) 8px, transparent 8.5px);
+  background-size:24px 14px;
+  background-repeat:repeat-x;
+}
+
+.tc-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+  padding-top:6px;
+}
+
+.tc-user{ display:flex; align-items:center; gap:14px; }
+
+.avatar{
+  width:54px; height:54px;
+  border-radius:50%;
+  background:var(--berry);
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800;
+  font-family:'Baloo 2',sans-serif;
+  font-size:17px;
+  flex-shrink:0;
+}
+
+.tc-user h3{ font-size:17px; font-weight:700; }
+.tc-sub{ font-size:13px; color:#6b5f55; margin-top:3px; }
+
+.badge{
+  font-family:'Space Mono',monospace;
+  font-weight:700;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.badge-deuda{ background:var(--brick-bg); color:var(--brick); }
+.badge-aldia{ background:var(--verde-bg); color:var(--verde); }
+
+.tc-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:16px;
+  font-size:13.5px;
+}
+
+.tc-meta div{ background:var(--bg-page); padding:10px 12px; border-radius:10px; }
+
+.tc-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+.btn{
+  border:none;
+  padding:11px 15px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  font-family:'Work Sans',sans-serif;
+  font-size:13.5px;
+  display:flex; align-items:center; gap:7px;
+}
+
+.btn:focus-visible{ outline:3px solid var(--mostaza); outline-offset:2px; }
+
+.btn-dark{ background:var(--ink); color:#fff; }
+.btn-primary{ background:var(--berry); color:#fff; }
+.btn-wa{ background:#22c55e; color:#fff; }
+.btn-danger{ background:var(--brick-bg); color:var(--brick); }
+.btn-ghost{ background:var(--bg-page); color:var(--ink); }
+
+/* ---------- FORM (registrar) ---------- */
+
+.form-ticket{ background:var(--paper); border-radius:20px; padding:26px; }
+
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.field{ margin-bottom:2px; }
+.field label{ display:block; margin-bottom:8px; font-weight:700; font-size:13.5px; }
+
+.field input, .field select{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:2px dashed var(--line);
+  background:var(--paper);
+  font-family:'Work Sans',sans-serif;
+  font-size:16px;
+}
+
+.field input:focus-visible, .field select:focus-visible{
+  outline:3px solid var(--mostaza);
+  outline-offset:1px;
+  border-color:var(--berry);
+}
+
+/* ---------- REPORTES ---------- */
+
+.report-card{
+  background:var(--paper);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:16px;
+}
+
+.report-card h3{ font-family:'Baloo 2',sans-serif; margin-bottom:16px; font-size:19px; }
+
+.bar-row{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.bar-name{ width:150px; font-weight:600; font-size:13.5px; flex-shrink:0; }
+.bar-track{ flex:1; background:var(--bg-page); border-radius:8px; height:14px; overflow:hidden; }
+.bar-fill{ height:100%; background:linear-gradient(90deg,var(--berry),var(--berry-light)); border-radius:8px; }
+.bar-value{ font-family:'Space Mono',monospace; font-weight:700; font-size:13px; width:95px; text-align:right; flex-shrink:0; }
+
+.rep-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:16px; }
+.rep-stat{ background:var(--paper); border-radius:16px; padding:20px; }
+.rep-stat .chalk-label{ color:#6b5f55; }
+.rep-stat .chalk-value{ color:var(--ink); font-size:24px; }
+
+/* ---------- MODALES ---------- */
+
+.modal{
+  position:fixed; inset:0;
+  background:rgba(20,15,12,.5);
+  display:none;
+  align-items:center; justify-content:center;
+  padding:20px;
+  z-index:10;
+}
+
+.modal-box{
+  background:var(--paper);
+  width:100%; max-width:620px;
+  border-radius:22px;
+  overflow:hidden;
+  max-height:88vh;
+  display:flex; flex-direction:column;
+}
+
+.modal-head{
+  background:var(--berry);
+  padding:20px 22px;
+  color:#fff;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-shrink:0;
+}
+
+.modal-head h2{ font-family:'Baloo 2',sans-serif; font-size:20px; }
+
+.modal-close{ background:rgba(255,255,255,.2); border:none; color:#fff; width:38px; height:38px; border-radius:8px; cursor:pointer; font-weight:700; flex-shrink:0; font-size:16px; }
+
+.modal-body{ padding:22px; overflow:auto; }
+
+.modal-sec-title{
+  font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+  font-size:12px;
+  letter-spacing:1px;
+  color:#8a7c6e;
+  margin:20px 0 10px;
+}
+
+.modal-sec-title:first-child{ margin-top:0; }
+
+.hist-item{
+  background:var(--bg-page);
+  padding:12px 14px;
+  border-radius:10px;
+  margin-bottom:8px;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px;
+  font-size:14px;
+}
+
+.hist-item .h-value{ font-family:'Space Mono',monospace; font-weight:700; white-space:nowrap; }
+
+.datos-row{ display:flex; justify-content:space-between; padding:8px 0; font-size:14px; border-bottom:1px solid var(--bg-page); }
+.datos-row span:first-child{ color:#8a7c6e; }
+
+.abono-form{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin-bottom:6px; }
+.abono-form .field{ flex:1; min-width:120px; }
+
+.empty-note{ font-size:13.5px; color:#8a7c6e; padding:6px 0; }
+
+.field textarea{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:2px dashed var(--line);
+  background:var(--paper);
+  font-family:'Space Mono',monospace;
+  font-size:15px;
+  min-height:150px;
+  resize:vertical;
+}
+
+.field textarea:focus-visible{
+  outline:3px solid var(--mostaza);
+  outline-offset:1px;
+  border-color:var(--berry);
+}
+
+.preview-box{
+  background:var(--bg-page);
+  border-radius:14px;
+  padding:16px;
+  white-space:pre-wrap;
+  font-family:'Space Mono',monospace;
+  font-size:13px;
+  margin-top:12px;
+  line-height:1.5;
+}
+
+.notice-box{
+  background:#FBF3D9;
+  border:2px dashed var(--mostaza);
+  border-radius:14px;
+  padding:16px;
+  font-size:13.5px;
+  line-height:1.5;
+  margin-bottom:16px;
+}
+
+.photo-upload{
+  display:block;
+  border:3px dashed var(--line);
+  border-radius:16px;
+  padding:34px 20px;
+  text-align:center;
+  cursor:pointer;
+  background:var(--bg-page);
+}
+
+.photo-upload:hover{ border-color:var(--berry); }
+
+.menu-preview{
+  max-width:100%;
+  border-radius:14px;
+  margin-top:14px;
+  display:block;
+}
+
+.client-check-list{
+  max-height:220px;
+  overflow:auto;
+  background:var(--bg-page);
+  border-radius:12px;
+  padding:6px 10px;
+  margin-bottom:14px;
+}
+
+.client-check-row{
+  padding:9px 4px;
+  font-size:14px;
+  border-bottom:1px solid var(--paper);
+}
+
+.client-check-row:last-child{ border-bottom:none; }
+
+.stepper{
+  background:var(--paper);
+  border-radius:18px;
+  padding:26px;
+  text-align:center;
+}
+
+.stepper .prog{
+  font-family:'Space Mono',monospace;
+  font-weight:700;
+  font-size:13px;
+  color:#8a7c6e;
+  margin-bottom:6px;
+}
+
+/* ---------- VENTAS / POS ---------- */
+
+.chip-lg{ font-size:16px; padding:14px 22px; }
+
+.almuerzo-block{ margin-bottom:18px; }
+
+.btn-add-almuerzo{
+  width:100%;
+  background:var(--mostaza);
+  color:var(--ink);
+  padding:18px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:800;
+  justify-content:center;
+  margin:4px 0 22px;
+}
+
+.btn-registrar{
+  width:100%;
+  padding:22px;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:800;
+  justify-content:center;
+  margin-top:6px;
+}
+
+.btn-sm{ padding:9px 13px; font-size:12.5px; }
+
+.venta-status{
+  text-align:center;
+  font-weight:700;
+  color:var(--verde);
+  margin-top:14px;
+  min-height:20px;
+  font-size:14px;
+}
+
+.porcion-row{ display:flex; gap:8px; margin-bottom:8px; align-items:center; }
+
+.mini-input{
+  flex:1;
+  padding:11px;
+  border-radius:8px;
+  border:2px dashed var(--line);
+  background:var(--paper);
+  font-family:'Work Sans',sans-serif;
+  font-size:16px;
+}
+
+.mini-input:focus-visible{
+  outline:3px solid var(--mostaza);
+  outline-offset:1px;
+  border-color:var(--berry);
+}
+
+/* ---------- COMANDA DE IMPRESIÓN ---------- */
+
+#comanda-print{ display:none; }
+
+@media print{
+  body *{ visibility:hidden; }
+  #comanda-print, #comanda-print *{ visibility:visible; }
+  #comanda-print{
+    display:block;
+    position:absolute;
+    top:0; left:0;
+    font-family:'Space Mono',monospace;
+    color:#000;
+    padding:6mm;
+  }
+}
+
+.papel-58{ width:58mm; }
+.papel-80{ width:80mm; }
+
+.cmd-header{ font-size:16px; font-weight:700; text-align:center; margin-bottom:6px; letter-spacing:1px; }
+.cmd-linea{ font-size:12px; text-align:center; margin-bottom:2px; }
+.cmd-llamador{ font-size:24px; font-weight:800; text-align:center; margin:10px 0; border:2px solid #000; padding:8px; }
+.cmd-sep{ border-top:1px dashed #000; margin:8px 0; }
+.cmd-item-nombre{ font-size:14px; font-weight:700; }
+.cmd-item-acomp{ font-size:12px; }
+.cmd-porciones{ font-size:12px; }
+.cmd-obs{ font-size:12px; font-style:italic; margin-top:2px; }
+
+.btn{ max-width:100%; }
+
+@media(max-width:768px){
+  .grid2{ grid-template-columns:1fr; }
+  .tc-meta{ grid-template-columns:1fr; }
+  .tc-actions .btn{ flex:1; justify-content:center; }
+  .brand-text h1{ font-size:24px; }
+  .bar-name{ width:100px; font-size:12.5px; }
+  .bar-value{ width:80px; font-size:12px; }
+  .modal-box{ max-height:92vh; }
+}
+
+@media(max-width:480px){
+  .app{ padding:16px 14px 50px; }
+  .marquee{ padding:20px 18px 18px; border-radius:18px; }
+  .brand{ gap:14px; }
+  .logo-frame{ width:60px; height:60px; }
+  .brand-text h1{ font-size:20px; }
+  .tagline-ribbon{ font-size:11px; padding:5px 12px; }
+  .btn-nuevo{ padding:12px 16px; font-size:13.5px; width:100%; justify-content:center; }
+  .marquee{ flex-direction:column; align-items:stretch; }
+  .ticket-tab{ padding:11px 14px; font-size:13px; flex:1; justify-content:center; }
+  .chalkboard{ padding:18px; }
+  .chalk-value{ font-size:22px; }
+  .ticket-card{ padding:20px 16px 18px; }
+  .form-ticket{ padding:18px; }
+  .abono-form{ flex-direction:column; align-items:stretch; }
+  .abono-form .field{ width:100%; }
+  .modal-head{ padding:16px 18px; }
+  .modal-body{ padding:16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="marquee">
+    <div class="brand">
+      <div class="logo-frame">
+        <img src="logo-la-patrona.jpeg" onerror="this.style.display='none'">
+      </div>
+      <div class="brand-text">
+        <h1>La Patrona</h1>
+        <div class="tagline-ribbon">Fiado de confianza · cuentas claras</div>
+      </div>
+    </div>
+    <button class="btn-nuevo" onclick="openModal()">
+      <i class="ti ti-plus"></i> Nuevo cliente
+    </button>
+  </div>
+
+  <div class="ticket-rail">
+    <button class="ticket-tab" onclick="goTab('ventas',this)"><i class="ti ti-shopping-cart"></i> Ventas</button>
+    <button class="ticket-tab active" onclick="goTab('res',this)"><i class="ti ti-clipboard-list"></i> Resumen</button>
+    <button class="ticket-tab" onclick="goTab('cli',this)"><i class="ti ti-users"></i> Clientes</button>
+    <button class="ticket-tab" onclick="goTab('reg',this)"><i class="ti ti-tool-kitchen-2"></i> Registrar almuerzo</button>
+    <button class="ticket-tab" onclick="goTab('rep',this)"><i class="ti ti-chart-bar"></i> Reportes</button>
+    <button class="ticket-tab" onclick="goTab('msg',this)"><i class="ti ti-message-2"></i> Mensaje</button>
+    <button class="ticket-tab" onclick="goTab('menu',this)"><i class="ti ti-photo"></i> Menú del día</button>
+  </div>
+
+  <!-- RESUMEN -->
+  <div id="sec-res" class="sec on">
+    <div class="chalkboard">
+      <div class="chalk-grid" id="chalk-metrics"></div>
+    </div>
+    <div class="chips" id="filter-chips">
+      <button class="chip active" data-f="todos" onclick="setFiltro('todos',this)">Todos</button>
+      <button class="chip" data-f="deben" onclick="setFiltro('deben',this)">Deben</button>
+      <button class="chip" data-f="aldia" onclick="setFiltro('aldia',this)">Al día</button>
+    </div>
+    <div id="res-list"></div>
+  </div>
+
+  <!-- CLIENTES -->
+  <div id="sec-cli" class="sec">
+    <input type="text" class="search-input" placeholder="Buscar cliente por nombre" oninput="renderCli(this.value)">
+    <div id="cli-list"></div>
+  </div>
+
+  <!-- REGISTRAR -->
+  <div id="sec-reg" class="sec">
+    <div class="form-ticket">
+      <div class="grid2">
+        <div class="field">
+          <label>Cliente</label>
+          <select id="sel-cli"></select>
+        </div>
+        <div class="field">
+          <label>Fecha</label>
+          <input type="date" id="f-fecha">
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input type="text" id="f-precio" placeholder="Ej: 13500">
+        </div>
+        <div class="field">
+          <label>Descripción</label>
+          <input type="text" id="f-desc" placeholder="Ej: Bandeja paisa">
+        </div>
+      </div>
+      <br>
+      <button class="btn btn-dark" onclick="regAlmuerzo()"><i class="ti ti-check"></i> Registrar almuerzo</button>
+    </div>
+  </div>
+
+  <!-- REPORTES -->
+  <div id="sec-rep" class="sec">
+    <div class="rep-grid" id="rep-stats"></div>
+    <div class="report-card">
+      <h3>Top deudores</h3>
+      <div id="rep-top"></div>
+    </div>
+  </div>
+
+  <!-- MENSAJE WHATSAPP -->
+  <div id="sec-msg" class="sec">
+    <div class="form-ticket">
+      <div class="field">
+        <label>Mensaje que reciben tus clientes por WhatsApp</label>
+        <textarea id="msg-template" oninput="actualizarPreviewMsg()"></textarea>
+      </div>
+      <p class="empty-note">Variables disponibles: {nombre} · {detalle} · {abonado} · {pendiente}</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn btn-primary" onclick="guardarMsgTemplate()"><i class="ti ti-check"></i> Guardar mensaje</button>
+        <button class="btn btn-ghost" onclick="restablecerMsgTemplate()">Restablecer predeterminado</button>
+      </div>
+      <div class="modal-sec-title">Vista previa con datos de ejemplo</div>
+      <div class="preview-box" id="msg-preview"></div>
+    </div>
+  </div>
+
+  <!-- MENÚ DEL DÍA -->
+  <div id="sec-menu" class="sec">
+    <div class="form-ticket" style="margin-bottom:18px">
+      <label style="font-weight:700;font-size:13.5px;display:block;margin-bottom:10px">Foto del menú de hoy</label>
+      <label class="photo-upload" for="menu-file">
+        <i class="ti ti-camera" style="font-size:28px"></i>
+        <p style="margin-top:8px;font-weight:600">Toca para subir una foto</p>
+        <p class="empty-note">JPG o PNG</p>
+      </label>
+      <input type="file" id="menu-file" accept="image/*" style="display:none" onchange="subirMenu(event)">
+      <img id="menu-preview-img" class="menu-preview" style="display:none">
+      <p class="empty-note" id="menu-fecha-note"></p>
+    </div>
+
+    <div class="form-ticket">
+      <div class="field">
+        <label>Texto que acompaña la foto</label>
+        <textarea id="menu-caption"></textarea>
+      </div>
+      <p class="empty-note">Variable disponible: {fecha}</p>
+      <button class="btn btn-ghost" onclick="guardarCaptionMenu()" style="margin-top:10px"><i class="ti ti-check"></i> Guardar texto</button>
+
+      <div class="notice-box" style="margin-top:20px">
+        <i class="ti ti-info-circle"></i>
+        WhatsApp no permite adjuntar la foto automáticamente desde un enlace, así que el envío masivo real no existe en ningún sistema basado en wa.me. Lo que sí hace este botón: descarga la foto una vez, y luego abre uno por uno los chats de tus clientes con el texto ya escrito — solo adjuntas la foto (ya está en tu galería) y das enviar.
+      </div>
+
+      <button class="btn btn-primary" onclick="descargarMenu()"><i class="ti ti-download"></i> Descargar foto del menú</button>
+
+      <div class="modal-sec-title">Clientes con WhatsApp registrado</div>
+      <div class="client-check-list" id="menu-client-list"></div>
+
+      <button class="btn btn-dark" onclick="iniciarEnvioMenu()" style="margin-top:6px"><i class="ti ti-brand-whatsapp"></i> Enviar por WhatsApp</button>
+
+      <div id="menu-stepper" style="display:none;margin-top:18px"></div>
+    </div>
+  </div>
+
+  <!-- VENTAS -->
+  <div id="sec-ventas" class="sec">
+
+    <div class="form-ticket" style="margin-bottom:18px">
+      <div class="modal-sec-title" style="margin-top:0">Papel para impresión</div>
+      <div class="chips" id="papel-chips">
+        <button type="button" class="chip" data-val="58" onclick="setPapel('58',this)">58 mm</button>
+        <button type="button" class="chip active" data-val="80" onclick="setPapel('80',this)">80 mm</button>
+      </div>
+
+      <div class="modal-sec-title">Tipo de servicio</div>
+      <div class="chips" id="tipo-servicio-chips">
+        <button type="button" class="chip chip-lg active" data-val="restaurante" onclick="setTipoServicio('restaurante',this)">🍽 Restaurante</button>
+        <button type="button" class="chip chip-lg" data-val="domicilio" onclick="setTipoServicio('domicilio',this)">🛵 Domicilio</button>
+      </div>
+
+      <div id="bloque-domicilio" style="display:none">
+
+        <div class="modal-sec-title">Forma de pago</div>
+        <div class="chips" id="forma-pago-chips">
+          <button type="button" class="chip" data-val="contado" onclick="setFormaPago('contado',this)">Contado</button>
+          <button type="button" class="chip" data-val="credito" onclick="setFormaPago('credito',this)">Crédito</button>
+        </div>
+
+        <div id="bloque-contado" style="display:none">
+          <div class="modal-sec-title">Método de pago</div>
+          <div class="chips" id="metodo-pago-chips">
+            <button type="button" class="chip" data-val="Efectivo" onclick="setMetodoPago('Efectivo',this)">Efectivo</button>
+            <button type="button" class="chip" data-val="Nequi" onclick="setMetodoPago('Nequi',this)">Nequi</button>
+            <button type="button" class="chip" data-val="Daviplata" onclick="setMetodoPago('Daviplata',this)">Daviplata</button>
+            <button type="button" class="chip" data-val="Bancolombia" onclick="setMetodoPago('Bancolombia',this)">Bancolombia</button>
+            <button type="button" class="chip" data-val="Tarjeta Débito" onclick="setMetodoPago('Tarjeta Débito',this)">Tarjeta débito</button>
+            <button type="button" class="chip" data-val="Tarjeta Crédito" onclick="setMetodoPago('Tarjeta Crédito',this)">Tarjeta crédito</button>
+          </div>
+        </div>
+
+        <div id="bloque-credito" style="display:none">
+          <div class="modal-sec-title">Cliente de fiado</div>
+          <div class="chips">
+            <button type="button" class="chip active" data-val="existente" onclick="setModoCliente('existente',this)">Cliente registrado</button>
+            <button type="button" class="chip" data-val="nuevo" onclick="setModoCliente('nuevo',this)">Nuevo cliente</button>
+          </div>
+
+          <div id="cliente-existente-wrap" class="field" style="margin-top:12px">
+            <label>Selecciona el cliente</label>
+            <select id="venta-cliente-existente"></select>
+          </div>
+
+          <div id="cliente-nuevo-wrap" class="grid2" style="display:none;margin-top:12px">
+            <div class="field"><label>Nombre</label><input type="text" id="venta-nc-nombre"></div>
+            <div class="field"><label>Celular</label><input type="text" id="venta-nc-cel"></div>
+            <div class="field"><label>Dirección</label><input type="text" id="venta-nc-dir"></div>
+            <div class="field"><label>Barrio</label><input type="text" id="venta-nc-barrio"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="almuerzos-container"></div>
+
+    <button type="button" class="btn btn-add-almuerzo" onclick="agregarAlmuerzo()"><i class="ti ti-plus"></i> Agregar almuerzo</button>
+
+    <div class="form-ticket" style="margin-bottom:18px">
+      <div class="field">
+        <label>Número del llamador</label>
+        <input type="text" id="venta-llamador" inputmode="numeric" placeholder="Ej: 12">
+      </div>
+    </div>
+
+    <div class="chalkboard">
+      <div class="chalk-grid" id="venta-resumen"></div>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-registrar" onclick="registrarPedido()"><i class="ti ti-printer"></i> Registrar pedido e imprimir comanda</button>
+    <div class="venta-status" id="venta-status"></div>
+
+  </div>
+
+</div>
+
+<datalist id="dl-almuerzos">
+  <option value="Ejecutivo"></option>
+  <option value="Corriente"></option>
+  <option value="Especial"></option>
+  <option value="Bandeja Paisa"></option>
+  <option value="Sancocho"></option>
+  <option value="Otro"></option>
+</datalist>
+
+<datalist id="dl-porciones">
+  <option value="Arroz"></option>
+  <option value="Aguacate"></option>
+  <option value="Huevo"></option>
+  <option value="Carne"></option>
+</datalist>
+
+<datalist id="dl-observaciones">
+  <option value="Sin ensalada"></option>
+  <option value="Con huevo"></option>
+  <option value="Sin arroz"></option>
+  <option value="Poco caldo"></option>
+  <option value="Para llevar"></option>
+  <option value="Sin cebolla"></option>
+  <option value="Carne bien asada"></option>
+</datalist>
+
+<div id="comanda-print"></div>
+
+<!-- MODAL NUEVO CLIENTE -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Nuevo cliente</h2>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="grid2">
+        <div class="field" style="grid-column:1/-1">
+          <label>Nombre</label>
+          <input type="text" id="nc-nom">
+        </div>
+        <div class="field">
+          <label>Celular</label>
+          <input type="text" id="nc-cel" placeholder="Sin indicativo, ej: 3001234567">
+        </div>
+        <div class="field">
+          <label>Barrio</label>
+          <input type="text" id="nc-ubi">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label>Ubicación / referencia</label>
+          <input type="text" id="nc-dir" placeholder="Ej: frente a la tienda La 15, casa azul">
+        </div>
+      </div>
+      <br>
+      <button class="btn btn-primary" onclick="saveCliente()">Guardar cliente</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE CLIENTE -->
+<div class="modal" id="modal-cli">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="detalle-nombre">Detalle cliente</h2>
+      <button class="modal-close" onclick="closeCli()">×</button>
+    </div>
+    <div class="modal-body" id="detalle-cli"></div>
+  </div>
+</div>
+
+<script>
+
+const STORAGE_KEY = 'laPatronaV2';
+const MSG_KEY = 'laPatronaMsgTemplate';
+const MENU_KEY = 'laPatronaMenuFoto';
+const MENU_CAPTION_KEY = 'laPatronaMenuCaption';
+
+const DEFAULT_MSG = `LA PATRONA · Fiado de confianza
+
+Hola {nombre}, este es tu resumen:
+
+{detalle}
+
+Abonado: {abonado}
+TOTAL PENDIENTE: {pendiente}
+
+Gracias por preferirnos.`;
+
+const DEFAULT_CAPTION = `🍽️ *MENÚ DEL DÍA - LA PATRONA*
+{fecha}
+
+¡Te esperamos!`;
+
+let clientes = load();
+let filtroRes = 'todos';
+let editandoId = null;
+let menuEnvioIndex = 0;
+let menuEnvioLista = [];
+
+function uid(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+function renderTemplate(tpl, data){
+  return tpl
+    .replace(/{nombre}/g, data.nombre||'')
+    .replace(/{detalle}/g, data.detalle||'')
+    .replace(/{abonado}/g, data.abonado||'')
+    .replace(/{pendiente}/g, data.pendiente||'')
+    .replace(/{fecha}/g, data.fecha||'');
+}
+
+function loadMsgTemplate(){ return localStorage.getItem(MSG_KEY) || DEFAULT_MSG; }
+function saveMsgTemplate(t){ localStorage.setItem(MSG_KEY, t); }
+function loadCaption(){ return localStorage.getItem(MENU_CAPTION_KEY) || DEFAULT_CAPTION; }
+function saveCaption(t){ localStorage.setItem(MENU_CAPTION_KEY, t); }
+
+function load(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw) return JSON.parse(raw);
+  return seedDemo();
+}
+
+function seedDemo(){
+  const demo = [
+    { id:uid(), nombre:'Carlos Pérez', cel:'3001234567', ubi:'El Centro',
+      alm:[
+        {f:'2026-07-20',p:13000,d:'Bandeja paisa'},
+        {f:'2026-07-21',p:13000,d:'Almuerzo'},
+        {f:'2026-07-24',p:15000,d:'Sancocho'}
+      ],
+      abonos:[{f:'2026-07-22',monto:20000,d:'Abono'}] },
+    { id:uid(), nombre:'Marta Gómez', cel:'3109876543', ubi:'Las Brisas',
+      alm:[
+        {f:'2026-07-18',p:13000,d:'Almuerzo'},
+        {f:'2026-07-19',p:13000,d:'Almuerzo'}
+      ],
+      abonos:[{f:'2026-07-25',monto:26000,d:'Pago total'}] },
+    { id:uid(), nombre:'Andrés Ruiz', cel:'', ubi:'La Toma',
+      alm:[
+        {f:'2026-07-27',p:14000,d:'Almuerzo ejecutivo'},
+        {f:'2026-07-28',p:14000,d:'Almuerzo ejecutivo'},
+        {f:'2026-07-29',p:14000,d:'Almuerzo ejecutivo'}
+      ],
+      abonos:[] }
+  ];
+  save(demo);
+  return demo;
+}
+
+function save(list){ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+
+const fmt = n => (n||0).toLocaleString('es-CO',{style:'currency',currency:'COP',minimumFractionDigits:0});
+
+const ini = n => n.split(' ').map(x=>x[0]).join('').substring(0,2).toUpperCase();
+
+const totalAlm = c => c.alm.reduce((a,b)=>a+b.p,0);
+const totalAbono = c => c.abonos.reduce((a,b)=>a+b.monto,0);
+const deuda = c => totalAlm(c) - totalAbono(c);
+
+const todayStr = () => new Date().toISOString().split('T')[0];
+
+const parseMoney = str => +String(str||'').replace(/[^\d]/g,'');
+
+function esMesActual(fecha){
+  const d = new Date(fecha+'T00:00:00');
+  const now = new Date();
+  return d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth();
+}
+
+function goTab(name, el){
+  document.querySelectorAll('.ticket-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  el.classList.add('active');
+  document.getElementById('sec-'+name).classList.add('on');
+  if(name==='cli') renderCli('');
+  if(name==='reg') fillSel();
+  if(name==='rep') renderRep();
+  if(name==='msg') initMsgTab();
+  if(name==='menu') initMenuTab();
+  if(name==='ventas') initVentasTab();
+}
+
+function openModal(){ document.getElementById('modal').style.display='flex'; }
+function closeModal(){ document.getElementById('modal').style.display='none'; }
+function closeCli(){ document.getElementById('modal-cli').style.display='none'; editandoId=null; }
+
+function setFiltro(f, el){
+  filtroRes = f;
+  document.querySelectorAll('#filter-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderRes();
+}
+
+function fillSel(){
+  document.getElementById('sel-cli').innerHTML =
+    clientes.map(c=>`<option value="${c.id}">${c.nombre}</option>`).join('');
+}
+
+function saveCliente(){
+  const nom = document.getElementById('nc-nom').value.trim();
+  if(!nom){ alert('Ingrese el nombre del cliente'); return; }
+
+  clientes.push({
+    id:uid(),
+    nombre:nom,
+    cel:document.getElementById('nc-cel').value.trim(),
+    ubi:document.getElementById('nc-ubi').value.trim(),
+    direccion:document.getElementById('nc-dir').value.trim(),
+    alm:[],
+    abonos:[]
+  });
+
+  save(clientes);
+  renderAll();
+  closeModal();
+
+  document.getElementById('nc-nom').value='';
+  document.getElementById('nc-cel').value='';
+  document.getElementById('nc-ubi').value='';
+  document.getElementById('nc-dir').value='';
+}
+
+function regAlmuerzo(){
+  const cid = document.getElementById('sel-cli').value;
+  const fecha = document.getElementById('f-fecha').value;
+  const precio = parseMoney(document.getElementById('f-precio').value);
+  const desc = document.getElementById('f-desc').value.trim() || 'Almuerzo';
+
+  if(!cid || !fecha || !precio){ alert('Completa todos los datos'); return; }
+
+  const c = clientes.find(x=>x.id===cid);
+  c.alm.push({ f:fecha, p:precio, d:desc });
+
+  save(clientes);
+  renderAll();
+
+  document.getElementById('f-precio').value='';
+  document.getElementById('f-desc').value='';
+  document.getElementById('f-fecha').value=todayStr();
+
+  alert('Almuerzo registrado');
+}
+
+function renderRes(){
+  const deudaTotal = clientes.reduce((a,c)=>a+Math.max(deuda(c),0),0);
+  const clientesConDeuda = clientes.filter(c=>deuda(c)>0).length;
+  const almuerzosHoy = clientes.reduce((a,c)=>a+c.alm.filter(x=>x.f===todayStr()).length,0);
+  const cobradoMes = clientes.reduce((a,c)=>a+c.abonos.filter(x=>esMesActual(x.f)).reduce((s,x)=>s+x.monto,0),0);
+
+  document.getElementById('chalk-metrics').innerHTML = `
+    <div><div class="chalk-label">Total adeudado</div><div class="chalk-value">${fmt(deudaTotal)}</div></div>
+    <div><div class="chalk-label">Clientes que deben</div><div class="chalk-value">${clientesConDeuda}</div></div>
+    <div><div class="chalk-label">Almuerzos hoy</div><div class="chalk-value">${almuerzosHoy}</div></div>
+    <div><div class="chalk-label">Cobrado este mes</div><div class="chalk-value">${fmt(cobradoMes)}</div></div>
+  `;
+
+  let lista = clientes.slice().sort((a,b)=>deuda(b)-deuda(a));
+  if(filtroRes==='deben') lista = lista.filter(c=>deuda(c)>0);
+  if(filtroRes==='aldia') lista = lista.filter(c=>deuda(c)<=0);
+
+  document.getElementById('res-list').innerHTML = lista.length
+    ? lista.map(c=>cardCli(c)).join('')
+    : '<p class="empty-note">No hay clientes en esta vista.</p>';
+}
+
+function renderCli(q){
+  const list = clientes.filter(c=>c.nombre.toLowerCase().includes((q||'').toLowerCase()));
+  document.getElementById('cli-list').innerHTML = list.length
+    ? list.map(c=>cardCli(c)).join('')
+    : '<p class="empty-note">No se encontraron clientes.</p>';
+}
+
+function renderRep(){
+  const vendidoMes = clientes.reduce((a,c)=>a+c.alm.filter(x=>esMesActual(x.f)).reduce((s,x)=>s+x.p,0),0);
+  const cobradoMes = clientes.reduce((a,c)=>a+c.abonos.filter(x=>esMesActual(x.f)).reduce((s,x)=>s+x.monto,0),0);
+  const almuerzosMes = clientes.reduce((a,c)=>a+c.alm.filter(x=>esMesActual(x.f)).length,0);
+
+  let frecuente = { nombre:'—', count:0 };
+  clientes.forEach(c=>{ if(c.alm.length>frecuente.count) frecuente = {nombre:c.nombre, count:c.alm.length}; });
+
+  document.getElementById('rep-stats').innerHTML = `
+    <div class="rep-stat"><div class="chalk-label">Vendido este mes</div><div class="chalk-value">${fmt(vendidoMes)}</div></div>
+    <div class="rep-stat"><div class="chalk-label">Cobrado este mes</div><div class="chalk-value">${fmt(cobradoMes)}</div></div>
+    <div class="rep-stat"><div class="chalk-label">Almuerzos este mes</div><div class="chalk-value">${almuerzosMes}</div></div>
+    <div class="rep-stat"><div class="chalk-label">Cliente más frecuente</div><div class="chalk-value" style="font-size:18px">${frecuente.nombre}</div></div>
+  `;
+
+  const top = clientes.map(c=>({nombre:c.nombre, deuda:deuda(c)}))
+    .filter(x=>x.deuda>0)
+    .sort((a,b)=>b.deuda-a.deuda)
+    .slice(0,5);
+
+  const max = top.length ? top[0].deuda : 1;
+
+  document.getElementById('rep-top').innerHTML = top.length
+    ? top.map(x=>`
+        <div class="bar-row">
+          <div class="bar-name">${x.nombre}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.max((x.deuda/max)*100,4)}%"></div></div>
+          <div class="bar-value">${fmt(x.deuda)}</div>
+        </div>
+      `).join('')
+    : '<p class="empty-note">Nadie tiene deuda pendiente. ¡Todo al día!</p>';
+}
+
+function renderAll(){
+  renderRes();
+  renderCli(document.querySelector('#sec-cli .search-input')?.value || '');
+  fillSel();
+}
+
+function cardCli(c){
+  const d = deuda(c);
+  const badge = d>0
+    ? `<div class="badge badge-deuda">${fmt(d)}</div>`
+    : `<div class="badge badge-aldia">Al día</div>`;
+
+  return `
+    <div class="ticket-card">
+      <div class="tc-top">
+        <div class="tc-user">
+          <div class="avatar">${ini(c.nombre)}</div>
+          <div>
+            <h3>${c.nombre}</h3>
+            <div class="tc-sub">${c.cel || 'Sin celular'}</div>
+          </div>
+        </div>
+        ${badge}
+      </div>
+      <div class="tc-meta">
+        <div><i class="ti ti-map-pin"></i> ${c.ubi || 'Sin ubicación'}</div>
+        <div><i class="ti ti-tool-kitchen-2"></i> ${c.alm.length} almuerzos</div>
+      </div>
+      <div class="tc-actions">
+        <button class="btn btn-dark" onclick="verCliente('${c.id}')"><i class="ti ti-user"></i> Ver cliente</button>
+        <button class="btn btn-ghost" onclick="verCliente('${c.id}',true)"><i class="ti ti-edit"></i> Editar</button>
+        <button class="btn btn-wa" onclick="wa('${c.id}')"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+        <button class="btn btn-danger" onclick="eliminarCliente('${c.id}')"><i class="ti ti-trash"></i> Eliminar</button>
+      </div>
+    </div>
+  `;
+}
+
+function verCliente(id, editar){
+  editandoId = editar ? id : null;
+  const c = clientes.find(x=>x.id===id);
+  document.getElementById('detalle-nombre').textContent = c.nombre;
+
+  const datosHtml = editandoId===id ? `
+    <div class="field" style="margin-bottom:10px"><label>Nombre</label><input type="text" id="ed-nom" value="${c.nombre}"></div>
+    <div class="field" style="margin-bottom:10px"><label>Celular</label><input type="text" id="ed-cel" value="${c.cel||''}"></div>
+    <div class="field" style="margin-bottom:10px"><label>Barrio</label><input type="text" id="ed-ubi" value="${c.ubi||''}"></div>
+    <div class="field" style="margin-bottom:14px"><label>Ubicación / referencia</label><input type="text" id="ed-dir" value="${c.direccion||''}"></div>
+    <button class="btn btn-primary" onclick="guardarEdicion('${c.id}')"><i class="ti ti-check"></i> Guardar cambios</button>
+    <button class="btn btn-ghost" onclick="verCliente('${c.id}',false)">Cancelar</button>
+  ` : `
+    <div class="datos-row"><span>Celular</span><span>${c.cel || 'Sin celular'}</span></div>
+    <div class="datos-row"><span>Barrio</span><span>${c.ubi || 'Sin ubicación'}</span></div>
+    <div class="datos-row"><span>Ubicación / referencia</span><span>${c.direccion || 'Sin especificar'}</span></div>
+    <div class="datos-row"><span>Abonado</span><span>${fmt(totalAbono(c))}</span></div>
+    <div class="datos-row"><span>Pendiente</span><span>${fmt(deuda(c))}</span></div>
+    <button class="btn btn-ghost" style="margin-top:14px" onclick="verCliente('${c.id}',true)"><i class="ti ti-edit"></i> Editar datos</button>
+    ${ deuda(c)>0 ? `<button class="btn btn-dark" style="margin-top:14px" onclick="pagarTodo('${c.id}')"><i class="ti ti-check"></i> Marcar cuenta como saldada</button>` : '' }
+  `;
+
+  const almHtml = c.alm.length
+    ? c.alm.slice().reverse().map(a=>`
+        <div class="hist-item">
+          <div><strong>${a.d}</strong><br><span style="color:#8a7c6e">${a.f}</span></div>
+          <div class="h-value">${fmt(a.p)}</div>
+        </div>
+      `).join('')
+    : '<p class="empty-note">Sin almuerzos registrados.</p>';
+
+  const abonosHtml = c.abonos.length
+    ? c.abonos.slice().reverse().map(a=>`
+        <div class="hist-item">
+          <div><strong>${a.d}</strong><br><span style="color:#8a7c6e">${a.f}</span></div>
+          <div class="h-value" style="color:var(--verde)">+ ${fmt(a.monto)}</div>
+        </div>
+      `).join('')
+    : '<p class="empty-note">Sin abonos registrados.</p>';
+
+  document.getElementById('detalle-cli').innerHTML = `
+    <div class="modal-sec-title">Datos del cliente</div>
+    ${datosHtml}
+
+    <div class="modal-sec-title">Registrar abono</div>
+    <div class="abono-form">
+      <div class="field"><label>Valor</label><input type="text" id="ab-monto" placeholder="Ej: 20000"></div>
+      <div class="field"><label>Fecha</label><input type="date" id="ab-fecha" value="${todayStr()}"></div>
+      <button class="btn btn-primary" onclick="registrarAbono('${c.id}')"><i class="ti ti-cash"></i> Registrar</button>
+    </div>
+
+    <div class="modal-sec-title">Historial de almuerzos</div>
+    ${almHtml}
+
+    <div class="modal-sec-title">Historial de abonos</div>
+    ${abonosHtml}
+  `;
+
+  document.getElementById('modal-cli').style.display='flex';
+}
+
+function guardarEdicion(id){
+  const c = clientes.find(x=>x.id===id);
+  const nom = document.getElementById('ed-nom').value.trim();
+  if(!nom){ alert('El nombre no puede estar vacío'); return; }
+
+  c.nombre = nom;
+  c.cel = document.getElementById('ed-cel').value.trim();
+  c.ubi = document.getElementById('ed-ubi').value.trim();
+  c.direccion = document.getElementById('ed-dir').value.trim();
+
+  save(clientes);
+  renderAll();
+  verCliente(id, false);
+}
+
+function registrarAbono(id){
+  const monto = parseMoney(document.getElementById('ab-monto').value);
+  const fecha = document.getElementById('ab-fecha').value || todayStr();
+
+  if(!monto){ alert('Ingresa un valor válido'); return; }
+
+  const c = clientes.find(x=>x.id===id);
+  c.abonos.push({ f:fecha, monto, d:'Abono' });
+
+  save(clientes);
+  renderAll();
+  verCliente(id, false);
+}
+
+function pagarTodo(id){
+  const c = clientes.find(x=>x.id===id);
+  const pendiente = deuda(c);
+
+  if(pendiente<=0){ alert('Este cliente no tiene deuda pendiente'); return; }
+  if(!confirm(`¿Registrar pago total de ${fmt(pendiente)}? El historial se conserva.`)) return;
+
+  c.abonos.push({ f:todayStr(), monto:pendiente, d:'Pago total' });
+
+  save(clientes);
+  renderAll();
+  verCliente(id, false);
+}
+
+function eliminarCliente(id){
+  if(!confirm('¿Eliminar este cliente? Esta acción no se puede deshacer.')) return;
+
+  clientes = clientes.filter(c=>c.id!==id);
+  save(clientes);
+  renderAll();
+}
+
+function wa(id){
+  const c = clientes.find(x=>x.id===id);
+  if(!c.cel){ alert('Este cliente no tiene celular registrado'); return; }
+
+  const pendiente = deuda(c);
+  const detalle = c.alm.map(a=>`• ${a.f} | ${a.d} | ${fmt(a.p)}`).join('\n');
+
+  const msg = renderTemplate(loadMsgTemplate(), {
+    nombre: c.nombre,
+    detalle,
+    abonado: fmt(totalAbono(c)),
+    pendiente: fmt(pendiente)
+  });
+
+  window.open(`https://wa.me/57${c.cel.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+/* ---------- PESTAÑA: MENSAJE DE WHATSAPP ---------- */
+
+function initMsgTab(){
+  document.getElementById('msg-template').value = loadMsgTemplate();
+  actualizarPreviewMsg();
+}
+
+function actualizarPreviewMsg(){
+  const tpl = document.getElementById('msg-template').value;
+  const ejemplo = renderTemplate(tpl, {
+    nombre:'Carlos Pérez',
+    detalle:'• 2026-07-20 | Bandeja paisa | '+fmt(13000)+'\n• 2026-07-21 | Almuerzo | '+fmt(13000),
+    abonado: fmt(20000),
+    pendiente: fmt(21000)
+  });
+  document.getElementById('msg-preview').textContent = ejemplo;
+}
+
+function guardarMsgTemplate(){
+  saveMsgTemplate(document.getElementById('msg-template').value);
+  alert('Mensaje guardado. Se usará para todos los envíos individuales.');
+}
+
+function restablecerMsgTemplate(){
+  if(!confirm('¿Volver al mensaje predeterminado?')) return;
+  document.getElementById('msg-template').value = DEFAULT_MSG;
+  saveMsgTemplate(DEFAULT_MSG);
+  actualizarPreviewMsg();
+}
+
+/* ---------- PESTAÑA: MENÚ DEL DÍA ---------- */
+
+function initMenuTab(){
+  mostrarMenu();
+  document.getElementById('menu-caption').value = loadCaption();
+  renderMenuClientList();
+  document.getElementById('menu-stepper').style.display='none';
+  document.getElementById('menu-stepper').innerHTML='';
+}
+
+function subirMenu(e){
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    localStorage.setItem(MENU_KEY, JSON.stringify({ data:ev.target.result, fecha:todayStr() }));
+    mostrarMenu();
+  };
+  reader.readAsDataURL(file);
+}
+
+function mostrarMenu(){
+  const raw = localStorage.getItem(MENU_KEY);
+  const img = document.getElementById('menu-preview-img');
+  const note = document.getElementById('menu-fecha-note');
+
+  if(raw){
+    const data = JSON.parse(raw);
+    img.src = data.data;
+    img.style.display='block';
+    note.textContent = 'Subida el '+data.fecha;
+  } else {
+    img.style.display='none';
+    note.textContent = 'Aún no has subido la foto de hoy.';
+  }
+}
+
+function guardarCaptionMenu(){
+  saveCaption(document.getElementById('menu-caption').value);
+  alert('Texto del menú guardado');
+}
+
+function renderMenuClientList(){
+  const conCel = clientes.filter(c=>c.cel);
+  document.getElementById('menu-client-list').innerHTML = conCel.length
+    ? conCel.map(c=>`<div class="client-check-row"><i class="ti ti-brand-whatsapp" style="color:#22c55e"></i> ${c.nombre} <span style="color:#8a7c6e">· ${c.cel}</span></div>`).join('')
+    : '<p class="empty-note">Ningún cliente tiene celular registrado todavía.</p>';
+}
+
+function descargarMenu(){
+  const raw = localStorage.getItem(MENU_KEY);
+  if(!raw){ alert('Primero sube una foto del menú'); return; }
+
+  const data = JSON.parse(raw);
+  const a = document.createElement('a');
+  a.href = data.data;
+  a.download = 'menu-del-dia-'+data.fecha+'.jpg';
+  a.click();
+}
+
+function iniciarEnvioMenu(){
+  const raw = localStorage.getItem(MENU_KEY);
+  if(!raw){ alert('Primero sube una foto del menú de hoy'); return; }
+
+  menuEnvioLista = clientes.filter(c=>c.cel);
+  if(!menuEnvioLista.length){ alert('No hay clientes con celular registrado'); return; }
+
+  menuEnvioIndex = 0;
+  document.getElementById('menu-stepper').style.display='block';
+  mostrarPasoEnvio();
+}
+
+function mostrarPasoEnvio(){
+  const stepper = document.getElementById('menu-stepper');
+
+  if(menuEnvioIndex >= menuEnvioLista.length){
+    stepper.innerHTML = `<div class="stepper"><p style="font-weight:700">Recorriste toda la lista. Revisa que cada chat haya quedado enviado.</p><button class="btn btn-ghost" onclick="iniciarEnvioMenu()" style="margin-top:12px">Empezar de nuevo</button></div>`;
+    return;
+  }
+
+  const c = menuEnvioLista[menuEnvioIndex];
+
+  stepper.innerHTML = `
+    <div class="stepper">
+      <div class="prog">Cliente ${menuEnvioIndex+1} de ${menuEnvioLista.length}</div>
+      <h3 style="margin-bottom:16px">${c.nombre}</h3>
+      <button class="btn btn-wa" onclick="abrirWaMenu('${c.id}')" style="margin:0 auto 12px"><i class="ti ti-brand-whatsapp"></i> Abrir WhatsApp con ${c.nombre}</button>
+      <br>
+      <button class="btn btn-ghost" onclick="siguientePasoEnvio()">Siguiente cliente →</button>
+    </div>
+  `;
+}
+
+function abrirWaMenu(id){
+  const c = clientes.find(x=>x.id===id);
+  const raw = localStorage.getItem(MENU_KEY);
+  const data = raw ? JSON.parse(raw) : { fecha:todayStr() };
+
+  const caption = renderTemplate(loadCaption(), { fecha:data.fecha });
+
+  window.open(`https://wa.me/57${c.cel.replace(/\D/g,'')}?text=${encodeURIComponent(caption)}`,'_blank');
+}
+
+function siguientePasoEnvio(){
+  menuEnvioIndex++;
+  mostrarPasoEnvio();
+}
+
+/* ---------- VENTAS / POS ---------- */
+
+const VENTAS_KEY = 'laPatronaVentas';
+const VENTAS_CONSEC_KEY = 'laPatronaVentasConsecutivo';
+const PAPEL_KEY = 'laPatronaPapel';
+
+let ventas = JSON.parse(localStorage.getItem(VENTAS_KEY) || '[]');
+let ventasConsecutivo = +(localStorage.getItem(VENTAS_CONSEC_KEY) || 0);
+
+let ventaTipoServicio = 'restaurante';
+let ventaFormaPago = null;
+let ventaMetodoPago = null;
+let ventaModoCliente = 'existente';
+let ventasInicializada = false;
+let almuerzoAutoId = 1;
+let porcionAutoId = 1;
+let almuerzoCount = 0;
+
+function guardarVentas(){ localStorage.setItem(VENTAS_KEY, JSON.stringify(ventas)); }
+
+function initVentasTab(){
+  fillVentaClienteSelect();
+  if(!ventasInicializada){
+    ventasInicializada = true;
+    agregarAlmuerzo();
+  }
+  const papelGuardado = localStorage.getItem(PAPEL_KEY) || '80';
+  document.querySelectorAll('#papel-chips .chip').forEach(c=>{
+    c.classList.toggle('active', c.dataset.val===papelGuardado);
+  });
+}
+
+function setPapel(val, el){
+  localStorage.setItem(PAPEL_KEY, val);
+  document.querySelectorAll('#papel-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function setTipoServicio(val, el){
+  ventaTipoServicio = val;
+  document.querySelectorAll('#tipo-servicio-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('bloque-domicilio').style.display = val==='domicilio' ? 'block' : 'none';
+}
+
+function setFormaPago(val, el){
+  ventaFormaPago = val;
+  document.querySelectorAll('#forma-pago-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('bloque-contado').style.display = val==='contado' ? 'block' : 'none';
+  document.getElementById('bloque-credito').style.display = val==='credito' ? 'block' : 'none';
+  if(val==='credito') fillVentaClienteSelect();
+}
+
+function setMetodoPago(val, el){
+  ventaMetodoPago = val;
+  document.querySelectorAll('#metodo-pago-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function setModoCliente(val, el){
+  ventaModoCliente = val;
+  el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('cliente-existente-wrap').style.display = val==='existente' ? 'block' : 'none';
+  document.getElementById('cliente-nuevo-wrap').style.display = val==='nuevo' ? 'grid' : 'none';
+}
+
+function fillVentaClienteSelect(){
+  const sel = document.getElementById('venta-cliente-existente');
+  if(!sel) return;
+  sel.innerHTML = clientes.map(c=>`<option value="${c.id}">${c.nombre}</option>`).join('');
+}
+
+function bloqueAlmuerzoHTML(id, numero){
+  return `
+    <div class="ticket-card almuerzo-block" data-id="${id}">
+      <div class="tc-top" style="margin-bottom:14px">
+        <h3>Almuerzo ${numero}</h3>
+        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarAlmuerzo(${id})"><i class="ti ti-trash"></i></button>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Nombre del almuerzo</label>
+          <input type="text" list="dl-almuerzos" class="almuerzo-nombre" placeholder="Ej: Bandeja paisa">
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input type="text" class="almuerzo-precio" placeholder="Ej: 16000" oninput="recalcularResumen()">
+        </div>
+      </div>
+
+      <div class="modal-sec-title">Acompañamiento</div>
+      <div class="chips acompanamiento-chips">
+        <button type="button" class="chip" data-val="Sopa" onclick="seleccionarAcompanamiento(${id},'Sopa',this)">Sopa</button>
+        <button type="button" class="chip" data-val="Mazamorra" onclick="seleccionarAcompanamiento(${id},'Mazamorra',this)">Mazamorra</button>
+      </div>
+
+      <div class="modal-sec-title">Porciones adicionales</div>
+      <div class="porciones-list" id="porciones-${id}"></div>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="agregarPorcion(${id})"><i class="ti ti-plus"></i> Agregar porción</button>
+
+      <div class="field" style="margin-top:16px">
+        <label>Observaciones para cocina</label>
+        <input type="text" list="dl-observaciones" class="almuerzo-obs" placeholder="Ej: sin ensalada, para llevar">
+      </div>
+    </div>
+  `;
+}
+
+function agregarAlmuerzo(){
+  const id = almuerzoAutoId++;
+  almuerzoCount++;
+  document.getElementById('almuerzos-container').insertAdjacentHTML('beforeend', bloqueAlmuerzoHTML(id, almuerzoCount));
+  recalcularResumen();
+}
+
+function eliminarAlmuerzo(id){
+  const el = document.querySelector(`.almuerzo-block[data-id="${id}"]`);
+  if(el) el.remove();
+  renumerarAlmuerzos();
+  recalcularResumen();
+}
+
+function renumerarAlmuerzos(){
+  almuerzoCount = 0;
+  document.querySelectorAll('.almuerzo-block').forEach(el=>{
+    almuerzoCount++;
+    el.querySelector('h3').textContent = 'Almuerzo '+almuerzoCount;
+  });
+}
+
+function seleccionarAcompanamiento(id, val, el){
+  const block = document.querySelector(`.almuerzo-block[data-id="${id}"]`);
+  block.dataset.acomp = val;
+  block.querySelectorAll('.acompanamiento-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function agregarPorcion(almuerzoId){
+  const pid = porcionAutoId++;
+  const html = `
+    <div class="porcion-row" data-pid="${pid}">
+      <input type="text" list="dl-porciones" class="porcion-nombre mini-input" placeholder="Ej: Arroz">
+      <input type="text" class="porcion-precio mini-input" placeholder="Ej: 2000" oninput="recalcularResumen()">
+      <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.porcion-row').remove(); recalcularResumen();"><i class="ti ti-x"></i></button>
+    </div>
+  `;
+  document.getElementById('porciones-'+almuerzoId).insertAdjacentHTML('beforeend', html);
+}
+
+function recalcularResumen(){
+  let totalAlmuerzos = 0, totalPorciones = 0, cantidadAlmuerzos = 0;
+
+  document.querySelectorAll('.almuerzo-block').forEach(block=>{
+    const precio = parseMoney(block.querySelector('.almuerzo-precio').value);
+    if(precio>0){ totalAlmuerzos += precio; cantidadAlmuerzos++; }
+    block.querySelectorAll('.porcion-precio').forEach(p=>{ totalPorciones += parseMoney(p.value); });
+  });
+
+  const total = totalAlmuerzos + totalPorciones;
+
+  const el = document.getElementById('venta-resumen');
+  if(!el) return;
+
+  el.innerHTML = `
+    <div><div class="chalk-label">Almuerzos</div><div class="chalk-value">${cantidadAlmuerzos}</div></div>
+    <div><div class="chalk-label">Valor almuerzos</div><div class="chalk-value">${fmt(totalAlmuerzos)}</div></div>
+    <div><div class="chalk-label">Valor porciones</div><div class="chalk-value">${fmt(totalPorciones)}</div></div>
+    <div><div class="chalk-label">Total a pagar</div><div class="chalk-value">${fmt(total)}</div></div>
+  `;
+}
+
+function mostrarEstadoVenta(msg){
+  const el = document.getElementById('venta-status');
+  el.textContent = msg;
+  setTimeout(()=>{ if(el.textContent===msg) el.textContent=''; }, 6000);
+}
+
+function registrarPedido(){
+  const llamador = document.getElementById('venta-llamador').value.trim();
+  if(!llamador){ alert('El número del llamador es obligatorio'); return; }
+
+  const bloques = document.querySelectorAll('.almuerzo-block');
+  if(!bloques.length){ alert('Agrega al menos un almuerzo'); return; }
+
+  let almuerzos = [];
+  let totalAlmuerzos = 0, totalPorciones = 0;
+  let valido = true;
+
+  bloques.forEach(block=>{
+    const nombre = block.querySelector('.almuerzo-nombre').value.trim();
+    const precio = parseMoney(block.querySelector('.almuerzo-precio').value);
+    const acomp = block.dataset.acomp || '';
+    const obs = block.querySelector('.almuerzo-obs').value.trim();
+
+    if(!nombre || !precio || !acomp) valido = false;
+
+    const porciones = [];
+    block.querySelectorAll('.porcion-row').forEach(p=>{
+      const pn = p.querySelector('.porcion-nombre').value.trim();
+      const pp = parseMoney(p.querySelector('.porcion-precio').value);
+      if(pn && pp){ porciones.push({ nombre:pn, precio:pp }); totalPorciones += pp; }
+    });
+
+    totalAlmuerzos += precio;
+    almuerzos.push({ nombre, precio, acompanamiento:acomp, observaciones:obs, porciones });
+  });
+
+  if(!valido){ alert('Completa nombre, precio y acompañamiento de cada almuerzo'); return; }
+
+  let cliente = null;
+
+  if(ventaTipoServicio==='domicilio'){
+    if(!ventaFormaPago){ alert('Selecciona la forma de pago'); return; }
+    if(ventaFormaPago==='contado' && !ventaMetodoPago){ alert('Selecciona el método de pago'); return; }
+
+    if(ventaFormaPago==='credito'){
+      if(ventaModoCliente==='existente'){
+        const cid = document.getElementById('venta-cliente-existente').value;
+        cliente = clientes.find(x=>x.id===cid);
+        if(!cliente){ alert('Selecciona un cliente de fiado'); return; }
+      } else {
+        const nom = document.getElementById('venta-nc-nombre').value.trim();
+        if(!nom){ alert('Escribe el nombre del nuevo cliente'); return; }
+        cliente = {
+          id: uid(),
+          nombre: nom,
+          cel: document.getElementById('venta-nc-cel').value.trim(),
+          direccion: document.getElementById('venta-nc-dir').value.trim(),
+          ubi: document.getElementById('venta-nc-barrio').value.trim(),
+          alm:[], abonos:[]
+        };
+        clientes.push(cliente);
+      }
+    }
+  }
+
+  const total = totalAlmuerzos + totalPorciones;
+
+  ventasConsecutivo++;
+  localStorage.setItem(VENTAS_CONSEC_KEY, ventasConsecutivo);
+
+  const ahora = new Date();
+
+  const pedido = {
+    numero: ventasConsecutivo,
+    fecha: todayStr(),
+    hora: ahora.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}),
+    tipoServicio: ventaTipoServicio,
+    formaPago: ventaFormaPago,
+    metodoPago: ventaMetodoPago,
+    clienteNombre: cliente ? cliente.nombre : '',
+    llamador,
+    almuerzos,
+    totalAlmuerzos,
+    totalPorciones,
+    totalGeneral: total
+  };
+
+  ventas.push(pedido);
+  guardarVentas();
+
+  if(ventaTipoServicio==='domicilio' && ventaFormaPago==='credito' && cliente){
+    cliente.alm.push({ f:todayStr(), p:total, d:'Pedido a domicilio #'+pedido.numero });
+    save(clientes);
+    renderAll();
+  }
+
+  imprimirComanda(pedido);
+  mostrarEstadoVenta('✅ Pedido #'+pedido.numero+' registrado — enviando a impresión');
+  resetFormularioVenta();
+}
+
+function imprimirComanda(pedido){
+  const papel = localStorage.getItem(PAPEL_KEY) || '80';
+  const cont = document.getElementById('comanda-print');
+  cont.className = 'papel-'+papel;
+
+  const items = pedido.almuerzos.map(a=>{
+    const porc = a.porciones.length
+      ? `<div class="cmd-porciones">+ ${a.porciones.map(p=>p.nombre).join(', ')}</div>`
+      : '';
+    const obs = a.observaciones ? `<div class="cmd-obs">Obs: ${a.observaciones}</div>` : '';
+    return `
+      <div class="cmd-item">
+        <div class="cmd-item-nombre">${a.nombre}</div>
+        <div class="cmd-item-acomp">${a.acompanamiento}</div>
+        ${porc}
+        ${obs}
+      </div>
+    `;
+  }).join('<div class="cmd-sep"></div>');
+
+  cont.innerHTML = `
+    <div class="cmd-header">LA PATRONA</div>
+    <div class="cmd-linea">Pedido #${pedido.numero}</div>
+    <div class="cmd-linea">${pedido.fecha} · ${pedido.hora}</div>
+    <div class="cmd-linea">${pedido.tipoServicio==='domicilio' ? '🛵 DOMICILIO' : '🍽 RESTAURANTE'}</div>
+    <div class="cmd-llamador">Llamador ${pedido.llamador}</div>
+    <div class="cmd-sep"></div>
+    ${items}
+  `;
+
+  setTimeout(()=>window.print(), 150);
+}
+
+function resetFormularioVenta(){
+  document.getElementById('almuerzos-container').innerHTML = '';
+  almuerzoCount = 0;
+  agregarAlmuerzo();
+
+  ventaTipoServicio = 'restaurante';
+  document.querySelectorAll('#tipo-servicio-chips .chip').forEach(c=>c.classList.remove('active'));
+  document.querySelector('#tipo-servicio-chips .chip[data-val="restaurante"]').classList.add('active');
+  document.getElementById('bloque-domicilio').style.display = 'none';
+
+  ventaFormaPago = null;
+  ventaMetodoPago = null;
+  ventaModoCliente = 'existente';
+
+  document.getElementById('venta-llamador').value = '';
+}
+
+renderAll();
+document.getElementById('f-fecha').value = todayStr();
+</script>
+
+</body>
+</html>
